@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsar Festival 2026 | Música, Arte e Tecnologia</title>
+    
+    <!-- Google Fonts & Phosphor Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --primary: #FF007A;
+            --primary-hover: #E0006B;
+            --secondary: #7928CA;
+            --accent: #00DFD8;
+            --dark-bg: #09090E;
+            --card-bg: #13131A;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #FFFFFF;
+            --text-muted: #A1A1AA;
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(9, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #FFF;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 0, 122, 0.4);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 0, 122, 0.6);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 24px 100px;
+            background: radial-gradient(circle at top right, rgba(121, 40, 202, 0.3), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(255, 0, 122, 0.25), transparent 50%);
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(0, 223, 216, 0.1);
+            border: 1px solid rgba(0, 223, 216, 0.3);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Cronômetro Regressivo */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .time-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .time-box label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Lineup / Atrações */
+        .lineup {
+            padding: 100px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.875rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        /* Filtro de Dias */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .btn-filter {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-filter.active, .btn-filter:hover {
+            background-color: var(--primary);
+            color: #FFF;
+            border-color: var(--primary);
+        }
+
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .artist-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+        }
+
+        .artist-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 223, 216, 0.2);
+        }
+
+        .artist-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .artist-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(9, 9, 14, 0.95), transparent);
+        }
+
+        .artist-genre {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .artist-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 4px 0;
+        }
+
+        .artist-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Ingressos */
+        .tickets {
+            padding: 100px 24px;
+            background: radial-gradient(circle at center, rgba(121, 40, 202, 0.15), transparent 70%);
+        }
+
+        .tickets-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .ticket-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .ticket-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(255, 0, 122, 0.25);
+        }
+
+        .ticket-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #FFF;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .ticket-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .ticket-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .ticket-features {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .ticket-features li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .ticket-features li i {
+            color: var(--accent);
+        }
+
+        /* FAQ Modal/Accordion */
+        .faq {
+            padding: 100px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            padding: 0 24px 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #050508;
+            border-top: 1px solid var(--card-border);
+            padding: 60px 24px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-bg);
+                flex-direction: column;
+                padding: 20px;
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .countdown {
+                gap: 8px;
+            }
+
+            .time-box {
+                min-width: 65px;
+                padding: 10px;
+            }
+
+            .time-box span {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="ph-bold ph-lightning" style="color: var(--primary);"></i>
+                <span class="logo-text">PULSAR</span> 2026
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#lineup">Lineup</a></li>
+                <li><a href="#ingressos">Ingressos</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="ph ph-list"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="ph-bold ph-sparkle"></i> O Maior Festival de Música & Experiências
+            </div>
+            <h1 class="hero-title">Sinta a energia do <span>Amanhã</span></h1>
+            <div class="hero-info">
+                <div><i class="ph-bold ph-calendar-blank" style="color: var(--primary);"></i> 14 & 15 de Novembro, 2026</div>
+                <div><i class="ph-bold ph-map-pin" style="color: var(--accent);"></i> Parque Ibirapuera - São Paulo, SP</div>
+            </div>
+
+            <!-- Cronômetro -->
+            <div class="countdown">
+                <div class="time-box"><span id="days">00</span><label>Dias</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Minutos</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Segundos</label></div>
+            </div>
+
+            <a href="#ingressos" class="btn-cta" style="font-size: 1.1rem; padding: 16px 36px;">
+                Garantir Meu Lugar no Lote 1
+            </a>
+        </div>
+    </section>
+
+    <!-- Lineup / Programação -->
+    <section class="lineup" id="lineup">
+        <div class="section-header">
+            <span class="section-tag">Programação</span>
+            <h2 class="section-title">Artistas Confirmados</h2>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="btn-filter active" data-day="all">Todos os Dias</button>
+            <button class="btn-filter" data-day="day1">Sábado (14/11)</button>
+            <button class="btn-filter" data-day="day2">Domingo (15/11)</button>
+        </div>
+
+        <div class="artist-grid" id="artistGrid">
+            <div class="artist-card" data-day="day1">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600" alt="DJ Cyber Synth" class="artist-img">
+                <div class="artist-overlay">
+                    <span class="artist-genre">Electronic / Synthwave</span>
+                    <h3 class="artist-name">Cyber Synth</h3>
+                    <p class="artist-time">Sábado - Palco Principal (22:00)</p>
+                </div>
+            </div>
+
+            <div class="artist-card" data-day="day1">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600" alt="Luna Vibe" class="artist-img">
+                <div class="artist-overlay">
+                    <span class="artist-genre">Indie Pop / R&B</span>
+                    <h3 class="artist-name">Luna Vibe</h3>
+                    <p class="artist-time">Sábado - Palco Neon (20:00)</p>
+                </div>
+            </div>
+
+            <div class="artist-card" data-day="day2">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600" alt="The Neon Echoes" class="artist-img">
+                <div class="artist-overlay">
+                    <span class="artist-genre">Alternative Rock</span>
+                    <h3 class="artist-name">The Neon Echoes</h3>
+                    <p class="artist-time">Domingo - Palco Principal (21:30)</p>
+                </div>
+            </div>
+
+            <div class="artist-card" data-day="day2">
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600" alt="Solaris Bass" class="artist-img">
+                <div class="artist-overlay">
+                    <span class="artist-genre">Drum & Bass</span>
+                    <h3 class="artist-name">Solaris Bass</h3>
+                    <p class="artist-time">Domingo - Palco Neon (23:00)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingressos -->
+    <section class="tickets" id="ingressos">
+        <div class="tickets-container">
+            <div class="section-header">
+                <span class="section-tag">Passe de Acesso</span>
+                <h2 class="section-title">Escolha sua Experiência</h2>
+            </div>
+
+            <div class="tickets-grid">
+                <!-- Pista -->
+                <div class="ticket-card">
+                    <h3 class="ticket-title">Pista Diária</h3>
+                    <div class="ticket-price">R$ 180</div>
+                    <ul class="ticket-features">
+                        <li><i class="ph-bold ph-check"></i> Acesso a 1 dia de evento</li>
+                        <li><i class="ph-bold ph-check"></i> Praça de Alimentação</li>
+                        <li><i class="ph-bold ph-check"></i> Acesso a todos os palcos</li>
+                    </ul>
+                    <a href="#" class="btn-cta" style="background: var(--card-bg); border: 1px solid var(--primary); text-align: center; justify-content: center;">Comprar Diário</a>
+                </div>
+
+                <!-- Passaporte Dourado -->
+                <div class="ticket-card featured">
+                    <span class="ticket-badge">Mais Popular</span>
+                    <h3 class="ticket-title">Passaporte (2 Dias)</h3>
+                    <div class="ticket-price">R$ 320</div>
+                    <ul class="ticket-features">
+                        <li><i class="ph-bold ph-check"></i> Acesso aos 2 dias de festival</li>
+                        <li><i class="ph-bold ph-check"></i> Copo Exclusivo do Evento</li>
+                        <li><i class="ph-bold ph-check"></i> Entrada prioritária</li>
+                        <li><i class="ph-bold ph-check"></i> Acesso a todos os palcos</li>
+                    </ul>
+                    <a href="#" class="btn-cta" style="text-align: center; justify-content: center;">Comprar Passaporte</a>
+                </div>
+
+                <!-- VIP -->
+                <div class="ticket-card">
+                    <h3 class="ticket-title">VIP Lounge</h3>
+                    <div class="ticket-price">R$ 650</div>
+                    <ul class="ticket-features">
+                        <li><i class="ph-bold ph-check"></i> Acesso aos 2 dias com Área VIP</li>
+                        <li><i class="ph-bold ph-check"></i> Open Bar & Finger Foods</li>
+                        <li><i class="ph-bold ph-check"></i> Visão privilegiada dos palcos</li>
+                        <li><i class="ph-bold ph-check"></i> Kit Exclusivo Pulsar 2026</li>
+                    </ul>
+                    <a href="#" class="btn-cta" style="background: var(--card-bg); border: 1px solid var(--accent); text-align: center; justify-content: center; color: var(--accent);">Comprar VIP</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <span class="section-tag">Dúvidas</span>
+            <h2 class="section-title">Perguntas Frequentes</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Qual a classificação de idade do evento?</span>
+                <i class="ph-bold ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+                A classificação etária é de 16 anos. Menores de 16 anos só poderão entrar acompanhados dos pais ou responsáveis legais.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Onde posso retirar meu ingresso físico?</span>
+                <i class="ph-bold ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+                Os ingressos são 100% digitais via QR Code através do nosso aplicativo oficial. Não há necessidade de impressão ou retirada física.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Quais itens são proibidos no festival?</span>
+                <i class="ph-bold ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+                É proibida a entrada de garrafas de vidro, objetos cortantes, guarda-chuvas com ponta e alimentos não industrializados fora da embalagem original.
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-container">
+            <a href="#" class="logo">
+                <i class="ph-bold ph-lightning" style="color: var(--primary);"></i>
+                <span class="logo-text">PULSAR</span> 2026
+            </a>
+            <div class="social-links">
+                <a href="#"><i class="ph-bold ph-instagram-logo"></i></a>
+                <a href="#"><i class="ph-bold ph-twitter-logo"></i></a>
+                <a href="#"><i class="ph-bold ph-youtube-logo"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Pulsar Festival. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- JavaScript Puro -->
